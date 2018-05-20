@@ -18,7 +18,7 @@ The example contained here depends upon part of our [Grijjy Foundation library](
 
 The source code and related example repository is hosted on GitHub at [https://github.com/grijjy/DelphiPlatformTimerQueue](https://github.com/grijjy/DelphiPlatformTimerQueue).
 
-##Grand Central Dispatch on iOS and macOS
+## Grand Central Dispatch on iOS and macOS
 On iOS and macOS we have a unified approach called the [Grand Central Dispatch](https://developer.apple.com/documentation/DISPATCH).  The GCD provides numerous capabilities to help developers with parallel applications on Apple devices.  Apple recommends this approach for threading events so that all applications on a given device can better share system resources.
 
 To create a event that repeats at a specified interval, you need to use 5 core APIs of the GCD:
@@ -83,7 +83,7 @@ dispatch_source_set_timer(FDispatchTimer,
   dispatch_time(DISPATCH_TIME_NOW, AInterval * NSEC_PER_MSEC), AInterval * NSEC_PER_MSEC, 0);
 ```  
 
-##ScheduledThreadPoolExecutor for Android
+## ScheduledThreadPoolExecutor for Android
 On Android we have a class called the ScheduledThreadPoolExecutor that allows us to create timers using an API called `scheduleAtFixedRate`.  
 
 To create a ScheduledThreadPoolExecutor we simple define one and initialize it.  During the initialization we must specify the total maximum threads in the pool.
@@ -131,7 +131,7 @@ Since we covered these concepts in detail for Windows and Linux timers in a [rec
 
 However, we have merged those concepts into a single unit and a unified class so that the TgoTimer() related unit and classes work the same on all platforms including iOS, macOS, Android, Windows and Linux.  As a developer you can simply use the class and setup your OnTimer() events and the interface is identical.
 
-##Considerations
+## Considerations
 Please keep in mind that there are some differences between platforms in how they handle overlapped timer events (when your total callback time exceeds the interval rate).  Some of the platform specific APIs will simply issue a new thread and timer event at the interval rate while others will wait until you return.
 
 If you don't want overlapping events, then one way to handle this is to check in your own OnTimer() event if you are already executing and exit.  You could use an Atomic operation to check or a TryLock condition.
