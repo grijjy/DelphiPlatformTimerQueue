@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A1C7F860-A3A6-49E1-92EA-BF4B298703E7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TimerQueues.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TimerQueuesConsole.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TimerQueues">
+        <MSBuild Projects="TimerQueues.dproj"/>
+    </Target>
+    <Target Name="TimerQueues:Clean">
+        <MSBuild Projects="TimerQueues.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TimerQueues:Make">
+        <MSBuild Projects="TimerQueues.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TimerQueuesConsole">
+        <MSBuild Projects="TimerQueuesConsole.dproj"/>
+    </Target>
+    <Target Name="TimerQueuesConsole:Clean">
+        <MSBuild Projects="TimerQueuesConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TimerQueuesConsole:Make">
+        <MSBuild Projects="TimerQueuesConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TimerQueues;TimerQueuesConsole"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TimerQueues:Clean;TimerQueuesConsole:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TimerQueues:Make;TimerQueuesConsole:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
